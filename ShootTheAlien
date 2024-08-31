@@ -1,0 +1,56 @@
+import pgzrun
+import random
+WIDTH = 500
+HEIGHT = 500
+TITLE = "Shoot The Alien"
+Player = Actor("alien")
+message = ""
+score = 0
+def draw():
+    screen.fill("White")
+    Player.draw()
+    screen.draw.text(message,(75,25),color = "black")
+    screen.draw.text(str(score),(25,25),color = "black")
+def on_mouse_down(pos):
+    global message
+    global score
+    if Player.collidepoint(pos):
+        Player.x = random.randint(50,450)
+        Player.y = random.randint(50,450)
+        messagechoice = random.randint(1,5)
+        if messagechoice == 1: 
+         message = "Good Shot!"
+
+        if messagechoice == 2: 
+             message = "Nice Aim!"
+
+        if messagechoice == 3: 
+             message = "Wow!"
+
+        if messagechoice == 4: 
+             message = "Amazing!"
+
+        if messagechoice == 5: 
+             message = "Bullseye!"
+        score += 1
+
+    else:
+        messagechoice = random.randint(1,5)
+        if messagechoice == 1:
+            message = "Missed!"
+
+        if messagechoice == 2:
+            message = "Try Again!"
+
+        if messagechoice == 3:
+            message = "Close!"
+
+        if messagechoice == 4:
+            message = "Better Luck Next Time!"
+
+        if messagechoice == 5:
+            message = "Almost!"
+        score -= 1
+        Player.x = random.randint(50,450)
+        Player.y = random.randint(50,450)
+pgzrun.go()
